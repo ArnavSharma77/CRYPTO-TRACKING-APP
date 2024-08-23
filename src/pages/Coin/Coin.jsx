@@ -22,10 +22,10 @@ export default function Coin () {
   }
 
   const fetchHistoricalData = async () => {
-    // const options = {
-    //     method: 'GET',
-    //     headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-NN2cahwabeqcLVMrgLS8uxSH'}
-    //   };
+    const options = {
+        method: 'GET',
+        headers: {accept: 'application/json', 'x-cg-demo-api-key': 'CG-NN2cahwabeqcLVMrgLS8uxSH'}
+      };
       
       fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart/range?vs_currency=${currency.name}&from=1711929600&to=1721570171`)
         .then(response => response.json())
