@@ -11,19 +11,16 @@ const [input,setInput] = useState("");
 
 const inputHandler = (event) => {
     setInput(event.target.value);
-    //we want page to show all 10 default coins again if nothing is written:-
-    if (event.target.value === "") {
-        setDisplayCoin(allCoin);
-    }
+    // if (event.target.value === "") {
+    //     setDisplayCoin(allCoin);
+    // }
 }
 
 const searchHandler = async (event) => {
-//prevents site from reloading when we write something and enter:-
     event.preventDefault();
     const coins = await allCoin.filter((item)=>{
         return item.name.toLowerCase().includes(input.toLowerCase())
     })
-    //types - bit , will show bitcoin (bitcoin includes bit and all coins who show bit)
     setDisplayCoin(coins);
 }
 
@@ -38,7 +35,6 @@ useEffect(()=>{
         <p>Welcome to the world's largest cryptocurrency
         marketplace. Sign up to explore more about cryptos.</p>
         <form onSubmit = {searchHandler}>
-
 
             <input onChange = {inputHandler} list = 'coinlist' value = {input} type = "text" placeholder = 'Search crypto...' required/>
             <button type = "submit">Search</button>
@@ -68,7 +64,6 @@ useEffect(()=>{
                     <p>{item.name + "-" + item.symbol}</p>
                 </div>
                 <p>{currency.symbol} {item.current_price.toLocaleString()}</p>
-                {/* dynamic class:- */}
                 <p className = {item.price_change_percentage_24h>0 ? "green" : "red"}>{Math.floor(item.price_change_percentage_24h*100)/100}</p>
                 <p className = 'market-cap'>{currency.symbol} {item.market_cap.toLocaleString()}</p>
                 </Link>
@@ -78,5 +73,3 @@ useEffect(()=>{
     </div>
   )
 }
-
-
